@@ -1,0 +1,48 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+     <div class="container">
+        <div class="card">
+            <div class="container">
+                <div class="card-body" style="background-color: #b33d25">
+                    <div align="center" style="color:white;text-align: left;">
+                        Vacation Data
+                    </div>
+                </div>
+            </div>
+            <br><br>
+             <div class="card-body">
+                <form [formGroup]="vacationForm"(ngSubmit)="onFormSubmit()">
+                    <table id="table1">
+                        <tr class="row row1">
+                            <td class="col-12 col-md-6">
+                                <input formControlName="type" class="inputs" placeholder="Vacation Type">
+                                <div *ngIf="vacationForm.get('type').invalid && (vacationForm.get('type').dirty || vacationForm.get('type').touched)">
+                                  <div class="diverror" *ngIf="vacationForm.get('type').errors.required">Required</div>
+                                </div>
+                            </td>
+                            <td class="col-12 col-md-6">
+                                <input formControlName="balance" class="inputs" placeholder="Balance">
+                                <div *ngIf="vacationForm.get('balance').invalid && (vacationForm.get('balance').dirty || vacationForm.get('balance').touched)">
+                                  <div class="diverror" *ngIf="vacationForm.get('balance').errors.required">Required</div>
+                                  <div class="diverror" *ngIf="errormessage !== null"> {{errormessage}}</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="col-12 col-md-6"></td>
+                            <td class="col-12 col-md-6">
+                            <button type="submit" class="btn btn-primary" [disabled]="!vacationForm.valid">Submit</button>
+                            <button type="reset" class="btn btn-danger" (click)="resetForm()">Reset</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+             </div>
+
+        </div>
+     </div>
+</body>
